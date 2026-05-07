@@ -23,11 +23,11 @@ toko_buku_data = {
     "koleksi": ["Clean Code", "The Pragmatic Programmer", "Introduction to Algorithms"]
 }
 
-@app.route('/api/info', methods=['GET'])
+@app.route('/info', methods=['GET'])
 def get_info():
     return jsonify(toko_buku_data)
 
-@app.route('/api/add-book', methods=['POST'])
+@app.route('/add-book', methods=['POST'])
 def add_book():
     new_item = request.json.get('item')
     if new_item:
