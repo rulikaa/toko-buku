@@ -1,3 +1,12 @@
+# ConfigMap untuk Identity
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mahasiswa-identity
+data:
+  MAHASISWA_NAMA: "Nurul Atiqah"
+  MAHASISWA_NIM: "2406279"
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,7 +27,9 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
-        
+        envFrom:
+        - configMapRef:
+            name: mahasiswa-identity
 ---
 apiVersion: v1
 kind: Service
@@ -28,10 +39,10 @@ spec:
   selector:
     app: backend
   ports:
-    - protocol: TCP
-      port: 5000
-      targetPort: 5000
-  type: LoadBalancer
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
+  type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -62,7 +73,7 @@ spec:
   selector:
     app: frontend
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: LoadBalancer
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
