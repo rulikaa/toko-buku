@@ -4,8 +4,8 @@ kind: ConfigMap
 metadata:
   name: mahasiswa-identity
 data:
-  MAHASISWA_NAMA: "Nurul Atiqah"
-  MAHASISWA_NIM: "2406279"
+  NAMA_PRAKTIKAN: "Nurul Atiqah"
+  NIM_PRAKTIKAN: "2406279"
 ---
 apiVersion: apps/v1
 kind: Deployment
